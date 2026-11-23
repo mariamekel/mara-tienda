@@ -1,216 +1,256 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8">
+<html lang="es">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mara · Especially selected</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,700..900,100&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F8F3EA;--bg2:#F0E6D8;--rose:#CF9B9B;--rose-d:#B27C7E;--rose-l:#EAD2CD;--ink:#4A3536;--mut:#8A7471;--line:#E4D6C8;--w:#FFFCF7;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#F8F3EA}}
-html{scroll-padding-top:70px;height:100%}
+:root{--bg:#F8F3EA;--rose:#CF9B9B;--rd:#B27C7E;--rl:#EAD2CD;--ink:#4A3536;--mut:#8A7471;--line:#E4D6C8;--w:#FFFCF7}
 *{box-sizing:border-box;margin:0}
-body{background:var(--bg);color:var(--ink);font:400 15px/1.6 'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:800;font-variation-settings:'SOFT' 100;color:var(--rose-d);line-height:1.1}
-a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit;color:inherit}
-button{cursor:pointer;background:none;border:0}
-:focus-visible{outline:2px solid var(--rose-d);outline-offset:2px}
-header{position:sticky;top:0;z-index:20;background:rgba(248,243,234,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:12px 28px}
-.logo{font-family:'Fraunces',serif;font-weight:900;font-variation-settings:'SOFT' 100;font-size:34px;color:var(--rose);letter-spacing:.01em;line-height:1}
-nav{display:flex;gap:20px;font-size:13.5px}nav a{padding:4px 0;border-bottom:1px solid transparent;transition:.25s}nav a:hover,nav a.on{border-color:var(--rose);color:var(--rose-d)}
-.ic{display:flex;justify-content:flex-end;gap:6px}.ic button{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;position:relative;transition:.25s}.ic button:hover{background:var(--rose-l)}
-.badge{position:absolute;top:2px;right:0;background:var(--rose-d);color:#fff;font-size:10px;min-width:17px;height:17px;border-radius:9px;display:grid;place-items:center}
-#burger{display:none}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--rose-d);color:#fff;padding:14px 30px;font-weight:500;letter-spacing:.04em;border-radius:2px;transition:.3s}
-.btn:hover{background:var(--ink);transform:translateY(-1px)}.btn.o{background:none;color:var(--ink);border:1px solid var(--ink)}.btn.o:hover{background:var(--ink);color:#fff}
-.wrap{max-width:1280px;margin:0 auto;padding:0 28px}
-.hero{display:grid;grid-template-columns:1.05fr 1fr;min-height:calc(100vh - 66px);max-height:780px}
-.hero .t{display:flex;flex-direction:column;justify-content:center;padding:40px 28px 40px max(28px,calc((100vw - 1280px)/2 + 28px));gap:22px}
-.hero h1{font-size:clamp(46px,6.4vw,92px);color:var(--rose)}
-.hero p{max-width:400px;color:var(--mut);font-size:17px}
-.hero .p{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:10px;padding:10px}
-.hero .p>div:first-child{grid-row:span 2}
-.ph{position:relative;overflow:hidden;display:grid;place-items:center}.ph svg{width:78%;height:88%;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
-a:hover>.ph svg,.card:hover .ph svg{transform:scale(1.05)}
-.ph img{transition:transform .7s}a:hover>.ph img,.card:hover .ph img{transform:scale(1.04)}.hero .p>a{display:grid}.hero .p .ph{height:100%}.th .ph{width:100%;height:100%}.sec{padding:84px 0}.sec h2{font-size:clamp(30px,4vw,48px);margin-bottom:12px}
-.sh{display:flex;justify-content:space-between;align-items:end;margin-bottom:34px;gap:20px}.sh a{border-bottom:1px solid var(--rose);font-size:14px}
-.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.cats .ph{aspect-ratio:4/5}.cats span{position:absolute;left:18px;bottom:16px;font:800 24px 'Fraunces',serif;color:var(--ink)}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px 18px}
-.card .ph{aspect-ratio:3/4}.card .tags{position:absolute;top:10px;left:10px;display:flex;gap:5px;z-index:2}
-.tag{font-size:10.5px;letter-spacing:.1em;padding:3px 9px;background:var(--w);color:var(--ink);font-weight:600}.tag.SALE{background:var(--rose-d);color:#fff}.tag.BEST{background:var(--ink);color:#fff}
-.card .add{position:absolute;left:10px;right:10px;bottom:10px;opacity:0;transform:translateY(8px);transition:.3s;background:var(--w);padding:10px;font-weight:500;font-size:13px;z-index:2}.card .add:hover{background:var(--rose-d);color:#fff}
-.card:hover .add,.card:focus-within .add{opacity:1;transform:none}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.6 'DM Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:800;color:var(--rd);line-height:1.1}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
+.logo{font:900 34px Fraunces,serif;color:var(--rose);font-variation-settings:'SOFT' 100}
+nav{display:flex;gap:18px;font-size:14px}nav a:hover{color:var(--rd)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.hero{padding:70px 0 50px;text-align:center}
+.hero h1{font-size:clamp(40px,6vw,76px);color:var(--rose)}
+.hero p{color:var(--mut);margin:16px auto 28px;max-width:440px}
+.btn{display:inline-block;background:var(--rd);color:#fff;padding:14px 30px;border-radius:2px;font-weight:500;letter-spacing:.03em;border:0}
+.btn:hover{background:var(--ink)}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 26px;justify-content:center}
+.chip{border:1px solid var(--line);background:var(--w);padding:8px 16px;border-radius:20px;font-size:13px}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:30px 20px;padding-bottom:80px}
+.card{cursor:pointer}
+.ph{aspect-ratio:3/4;background:var(--rl);position:relative;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s}
+.card:hover img{transform:scale(1.04)}
+.tag{position:absolute;top:10px;left:10px;background:var(--w);font-size:10.5px;letter-spacing:.1em;padding:3px 9px;font-weight:600;z-index:2}
+.tag.SALE{background:var(--rd);color:#fff}.tag.BEST{background:var(--ink);color:#fff}
 .card h3{font:500 15px 'DM Sans';color:var(--ink);margin-top:12px}
-.pr{display:flex;gap:10px;align-items:baseline;margin-top:2px}.pr b{font-weight:600}.pr s{color:var(--mut);font-size:13px}.pr .now{color:var(--rose-d)}
-.sw{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;align-items:center}.dot{width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,.15);padding:0}.dot.on{outline:1.5px solid var(--ink);outline-offset:2px}
-.chip{min-width:38px;height:32px;padding:0 8px;border:1px solid var(--line);font-size:12.5px;background:var(--w);transition:.2s}.chip:hover{border-color:var(--ink)}.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.banner{background:var(--rose-l);display:grid;grid-template-columns:1fr 1fr;align-items:center}.banner>div:first-child{padding:60px 8%;display:grid;gap:18px;justify-items:start}.banner .ph{height:440px}
-.shop{display:grid;grid-template-columns:230px 1fr;gap:40px;padding:40px 0 80px}
-.fl h4{font:600 12px 'DM Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:22px 0 10px}.fl h4:first-child{margin-top:0}
-.fl .row{display:flex;flex-wrap:wrap;gap:6px}.fl .cl{display:grid;gap:4px;justify-items:start}.fl .cl button{padding:3px 0;font-size:14px;color:var(--mut)}.fl .cl button.on{color:var(--rose-d);font-weight:600}
-.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap}
-.bar select,.inp{border:1px solid var(--line);background:var(--w);padding:10px 12px;border-radius:2px;width:100%}.bar select{width:auto}
-#ftog{display:none}
-.pd{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;padding:36px 0 60px}
-.gal{display:grid;grid-template-columns:78px 1fr;gap:12px}.th{display:grid;gap:10px;align-content:start}.th button{aspect-ratio:3/4;border:1px solid transparent;overflow:hidden;padding:0}.th button.on{border-color:var(--ink)}.gal .ph{aspect-ratio:4/5}
-.pd h1{font-size:clamp(30px,3.4vw,44px)}.pd .pr{font-size:22px;margin:12px 0 18px}.lab{font-size:13px;color:var(--mut);margin:20px 0 8px;display:flex;justify-content:space-between}.lab u{cursor:pointer;color:var(--rose-d)}
-.qty{display:inline-flex;border:1px solid var(--line);background:var(--w)}.qty button{width:40px;height:44px;font-size:18px}.qty span{width:44px;display:grid;place-items:center}
-.buy{display:flex;gap:12px;margin-top:24px}.buy .btn{flex:1}
-.acc{border-top:1px solid var(--line);margin-top:28px}.acc details{border-bottom:1px solid var(--line);padding:14px 0}.acc summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between}.acc summary::after{content:'+'}.acc details[open] summary::after{content:'–'}.acc p,.acc li{color:var(--mut);margin-top:8px;font-size:14px}
-.crumb{font-size:13px;color:var(--mut);padding-top:26px}.crumb a:hover{color:var(--rose-d)}
-.ov{position:fixed;inset:0;background:rgba(74,53,54,.4);z-index:40;opacity:0;pointer-events:none;transition:.3s}.ov.on{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);z-index:41;transform:translateX(100%);transition:.4s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column}.drawer.on{transform:none}
-.drawer .hd{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line)}.drawer .hd h3{font-size:26px}
-.dl{flex:1;overflow:auto;padding:8px 24px}.it{display:grid;grid-template-columns:76px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}.it .ph{aspect-ratio:3/4}.it .qty button{width:30px;height:32px}.it .qty span{width:32px}
-.it small{color:var(--mut);display:block}.rm{font-size:12.5px;color:var(--mut);text-decoration:underline;margin-left:12px}
-.df{padding:20px 24px;border-top:1px solid var(--line);display:grid;gap:12px}.sp{display:flex;justify-content:space-between}
-.empty{text-align:center;padding:60px 0;color:var(--mut);display:grid;gap:16px;justify-items:center}
-.modal{position:fixed;inset:0;z-index:50;display:none;place-items:center;padding:20px;background:rgba(74,53,54,.45)}.modal.on{display:grid}.modal>div{background:var(--bg);padding:32px;max-width:520px;width:100%;max-height:90vh;overflow:auto}
-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}td,th{border-bottom:1px solid var(--line);padding:9px 6px;text-align:center}
-.srch{position:fixed;top:0;left:0;right:0;z-index:45;background:var(--bg);padding:24px 28px;transform:translateY(-110%);transition:.35s;border-bottom:1px solid var(--line)}.srch.on{transform:none}.srch .inp{font-size:20px;padding:16px;max-width:760px;margin:0 auto;display:block}
-.co{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;padding:40px 0 80px}.co form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.co .f1{grid-column:1/-1}.co label{font-size:13px;color:var(--mut);display:grid;gap:4px}.co h3{font-size:24px;grid-column:1/-1;margin-top:14px}
-.opt{grid-column:1/-1;display:flex;justify-content:space-between;border:1px solid var(--line);padding:14px;background:var(--w);cursor:pointer}.opt input{margin-right:10px;accent-color:var(--rose-d)}
-.sum{background:var(--w);padding:28px;align-self:start;position:sticky;top:90px}
-.info{max-width:760px;padding:60px 0 90px}.info h1{font-size:46px;margin-bottom:24px}.info p,.info li{margin-bottom:12px;color:#6b5855}
-footer{background:var(--rose-l);padding:64px 0 28px;margin-top:40px}footer .g{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}footer h4{font:600 13px 'DM Sans';margin-bottom:12px}footer a{display:block;color:#6b5855;font-size:14px;padding:3px 0}footer a:hover{color:var(--rose-d)}footer .c{margin-top:44px;font-size:12.5px;color:var(--mut);display:flex;justify-content:space-between}
-.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,30px);background:var(--ink);color:#fff;padding:12px 22px;opacity:0;transition:.3s;z-index:60;pointer-events:none}.toast.on{transform:translate(-50%,0);opacity:1}
-.view{animation:in .45s ease}@keyframes in{from{opacity:0}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media(max-width:960px){
-header{grid-template-columns:auto 1fr auto;padding:8px 14px;backdrop-filter:none;background:var(--bg)}#burger{position:relative;z-index:2}nav{box-shadow:0 0 40px rgba(74,53,54,.2)}.logo{font-size:30px;text-align:center}#burger{display:grid}
-nav{position:fixed;top:0;left:0;bottom:0;width:78%;max-width:320px;background:var(--bg);z-index:42;flex-direction:column;padding:70px 28px;gap:10px;transform:translateX(-100%);transition:.35s;font-size:19px}nav.on{transform:none}
-.hero{grid-template-columns:1fr;min-height:0;max-height:none}.hero .t{padding:44px 22px 30px}.hero .p{height:340px}
-.cats{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr 1fr;gap:26px 10px}.wrap{padding:0 16px}.sec{padding:56px 0}
-.banner{grid-template-columns:1fr}.banner .ph{height:320px}
-.shop{grid-template-columns:1fr;gap:10px}.fl{display:none}.fl.on{display:block;padding-bottom:10px}#ftog{display:inline-flex}
-.pd,.co{grid-template-columns:1fr;gap:28px}.gal{grid-template-columns:1fr}.th{grid-auto-flow:column;grid-auto-columns:64px;order:2}
-footer .g{grid-template-columns:1fr 1fr}.card .add{opacity:1;transform:none;padding:7px;font-size:12px}.sum{position:static}.co form{grid-template-columns:1fr}
-}
-</style></head><body>
-<header>
-<div class="ic" style="justify-content:flex-start"><button id="burger" aria-label="Menú" onclick="menu()"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h16M3 11h16M3 16h16"/></svg></button>
-<nav id="nav"><a href="#home">Inicio</a><a href="#shop-new">Nueva colección</a><a href="#shop-ropa">Ropa</a><a href="#shop-vestidos">Vestidos</a><a href="#shop-tops">Tops</a><a href="#shop-pantalones">Pantalones</a><a href="#shop-accesorios">Accesorios</a><a href="#contacto">Contacto</a></nav></div>
-<a href="#home" class="logo" aria-label="Mara">Mara</a>
-<div class="ic"><button aria-label="Buscar" onclick="sr(1)"><svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="9" r="6.5"/><path d="M14 14l5 5"/></svg></button>
-<button aria-label="Carrito" onclick="dr(1)"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h14l-1 12H5zM8 7a3 3 0 016 0"/></svg><span class="badge" id="cnt">0</span></button></div>
+.pr{margin-top:2px;display:flex;gap:10px;align-items:baseline}.pr s{color:var(--mut);font-size:13px}.pr .now{color:var(--rd);font-weight:600}
+.pd{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:40px 0 80px}
+.pd .ph{aspect-ratio:4/5}
+.pd h1{font-size:clamp(30px,4vw,44px)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 18px}
+.sz{min-width:44px;height:40px;padding:0 12px;border:1px solid var(--line);background:var(--w)}.sz.on{background:var(--ink);color:#fff}.sz:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.dot{width:26px;height:26px;border-radius:50%;border:1px solid #0003;padding:0}.dot.on{outline:2px solid var(--ink);outline-offset:2px}
+.lbl{font-size:13px;color:var(--mut);margin:18px 0 6px}
+.qty{display:inline-flex;border:1px solid var(--line);background:var(--w)}.qty button{width:40px;height:42px;font-size:18px}.qty span{width:44px;display:grid;place-items:center}
+.stock{font-size:13px;color:var(--mut);margin-top:10px}
+.empty{text-align:center;padding:80px 0;color:var(--mut)}
+.back{font-size:13px;color:var(--mut);padding:24px 0 0;display:inline-block}
+.back:hover{color:var(--rd)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 22px;border-radius:3px;display:none;z-index:9}
+footer{background:var(--rl);padding:40px 0 28px;margin-top:40px;text-align:center;font-size:13px;color:#6b5855}
+@media(max-width:760px){.pd{grid-template-columns:1fr;gap:24px}nav{display:none}.grid{grid-template-columns:1fr 1fr;gap:24px 12px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a href="#/" class="logo">Mara</a>
+  <nav>
+    <a href="#/">Inicio</a>
+    <a href="#/catalogo">Colección</a>
+    <a href="#/catalogo?cat=vestidos">Vestidos</a>
+    <a href="#/catalogo?cat=tops">Tops</a>
+    <a href="#/catalogo?cat=pantalones">Pantalones</a>
+    <a href="#/catalogo?cat=accesorios">Accesorios</a>
+  </nav>
 </header>
-<div class="srch" id="srch"><input class="inp" id="sq" placeholder="Busca vestidos, tops, bolsos…" oninput="sres()" onkeydown="if(event.key==='Enter')go()"><div id="sres" class="wrap" style="max-width:760px;margin-top:10px"></div></div>
-<main id="app"></main>
-<footer><div class="wrap"><div class="g"><div><div class="logo" style="font-size:42px">Mara</div><p style="margin-top:10px;color:#6b5855;max-width:260px">Especially selected. Prendas elegidas una a una, para durar.</p></div>
-<div><h4>Mara</h4><a href="#sobre">Sobre Mara</a><a href="#contacto">Contacto</a><a href="#faq">Preguntas frecuentes</a></div>
-<div><h4>Ayuda</h4><a href="#envios">Políticas de envío</a><a href="#cambios">Cambios y devoluciones</a><a href="#shop-new">Nueva colección</a></div>
-<div><h4>Síguenos</h4><a href="#home" onclick="return t('Instagram: enlaza tu perfil aquí')">Instagram</a><a href="#home" onclick="return t('TikTok: enlaza tu perfil aquí')">TikTok</a><a href="#home" onclick="return t('Pinterest: enlaza tu perfil aquí')">Pinterest</a></div></div>
-<div class="c"><span>© 2026 Mara. Todos los derechos reservados.</span><span>Est. 2026</span></div></div></footer>
-<div class="ov" id="ov" onclick="dr(0);sr(0)"></div>
-<aside class="drawer" id="dr"><div class="hd"><h3>Tu carrito</h3><button onclick="dr(0)" aria-label="Cerrar" style="font-size:26px">×</button></div><div class="dl" id="dl"></div><div class="df" id="df"></div></aside>
-<div class="modal" id="gm" onclick="if(event.target===this)this.classList.remove('on')"><div><h3 style="font-size:30px">Guía de tallas</h3><p style="color:var(--mut);margin-top:6px">Medidas del cuerpo en cm.</p><table><tr><th>Talla</th><th>Busto</th><th>Cintura</th><th>Cadera</th></tr><tr><td>XS</td><td>80–83</td><td>62–65</td><td>88–91</td></tr><tr><td>S</td><td>84–87</td><td>66–69</td><td>92–95</td></tr><tr><td>M</td><td>88–91</td><td>70–73</td><td>96–99</td></tr><tr><td>L</td><td>92–96</td><td>74–78</td><td>100–104</td></tr><tr><td>XL</td><td>97–102</td><td>79–85</td><td>105–110</td></tr></table><button class="btn o" style="margin-top:20px" onclick="gm.classList.remove('on')">Cerrar</button></div></div>
-<div class="toast" id="ts"></div>
-<script>
-// ===== Capa de datos: sustituye por tu API / inventario cuando la conectes =====
-const COL={};
-let P=[],CATS=[];
-const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const API={createOrder:async o=>{const r=await fetch('/api/orders',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(o)}),d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'No se pudo registrar el pedido');return d}};
-const catName=k=>(CATS.find(c=>c.slug===k)||{}).name||k,tot=p=>Object.values(p.stock||{}).reduce((a,b)=>a+b,0);
-async function load(first){try{const d=await (await fetch('/api/products')).json();P=d.products;CATS=d.categories}catch(e){if(!first)return}
-Object.keys(COL).forEach(k=>delete COL[k]);P.forEach(p=>Object.assign(COL,p.cdef));
-cart=cart.filter(i=>P.some(p=>p.id===i.id&&p.colors.includes(i.color)));save();
-$('nav').innerHTML='<a href="#home">Inicio</a><a href="#shop-new">Nueva colección</a><a href="#shop-ropa">Ropa</a>'+CATS.map(c=>`<a href="#shop-${c.slug}">${c.name}</a>`).join('')+'<a href="#contacto">Contacto</a>';
-if(first)R();else if(!location.hash.startsWith('#checkout'))R(1,1)}
-// ===== Ilustraciones de prenda (sustituye por fotos reales) =====
-const SH={vestidos:'<path d="M38 10L46 10Q50 22 54 10L62 10L65 40L59 45L79 124L21 124L41 45L35 40Z"/>',tops:'<path d="M30 22L42 18Q50 30 58 18L70 22L88 54L76 61L70 48L70 106L30 106L30 48L24 61L12 54Z"/>',pantalones:'<path d="M32 12H68L73 124H55L50 50L45 124H27Z"/>',accesorios:'<rect x="26" y="50" width="48" height="46" rx="7"/><path d="M38 50Q38 26 50 26T62 50" fill="none" stroke="currentColor" stroke-width="4"/>'};
-const BG=['#EFE0D8','#F3E9DA','#E7D2CC'];
-function art(p,c,v){if(p.imgs&&p.imgs.length)return `<div class="ph"><img src="${p.imgs[v%p.imgs.length]}" alt="${p.name}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></div>`;const h=(COL[c]||['','#ddd'])[1],s=v===1?1.55:v===2?.9:1,o=v===1?'50% 28%':'50% 50%';
-return `<div class="ph" style="background:${BG[v%3]}"><svg viewBox="0 0 100 130" style="color:${h};transform-origin:${o};${v?'transform:scale('+s+')':''}"><ellipse cx="50" cy="127" rx="30" ry="2.4" fill="#000" opacity=".08"/><g fill="${h}" stroke="rgba(74,53,54,.22)" stroke-width=".8">${SH[p.cat]||SH.tops}</g>${p.cat!=='accesorios'?'<path d="M50 4Q56 4 56 9M50 4V10" stroke="#4A3536" stroke-opacity=".35" fill="none" stroke-width="1"/>':''}</svg></div>`}
-// ===== Estado =====
-const $=id=>document.getElementById(id),m$=n=>'$'+n.toFixed(2).replace('.00','');
-let cart=[];try{cart=JSON.parse(localStorage.getItem('mara-cart')||'[]')}catch(e){}
-const F0={cat:'',size:'',color:'',max:1e9,q:'',sort:'feat',newOnly:0};let F={...F0},CS={},PS={};
-const save=()=>{try{localStorage.setItem('mara-cart',JSON.stringify(cart))}catch(e){}};
-function t(msg){const e=$('ts');e.textContent=msg;e.classList.add('on');clearTimeout(t.i);t.i=setTimeout(()=>e.classList.remove('on'),2200);return false}
-const menu=o=>{const n=$('nav');const on=o===undefined?!n.classList.contains('on'):o;n.classList.toggle('on',!!on)};
-function dr(o){$('dr').classList.toggle('on',!!o);$('ov').classList.toggle('on',!!o);if(o)rdr()}
-function sr(o){$('srch').classList.toggle('on',!!o);$('ov').classList.toggle('on',!!o);if(o){$('sq').value=F.q;setTimeout(()=>$('sq').focus(),200);sres()}}
-function sres(){const q=$('sq').value.toLowerCase().trim();$('sres').innerHTML=q?(P.filter(p=>(p.name+p.cat+p.desc).toLowerCase().includes(q)).slice(0,5).map(p=>`<a href="#p-${p.id}" onclick="sr(0)" style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)"><span>${p.name}</span><b>${m$(p.price)}</b></a>`).join('')||'<p style="color:var(--mut)">Sin resultados. Prueba con “vestido” o “bolso”.</p>'):''}
-function go(){window.keepQ=$('sq').value.trim();sr(0);location.hash==='#shop'?R():location.hash='shop'}
-// ===== Carrito =====
-const cnt=()=>cart.reduce((a,i)=>a+i.qty,0),sub=()=>cart.reduce((a,i)=>a+i.qty*P.find(p=>p.id===i.id).price,0);
-function add(id,size,color,q=1){if(!size)return t('Elige una talla'),0;const p=P.find(x=>x.id===id),av=p.stock[size+'|'+color]||0,have=(cart.find(i=>i.id===id&&i.size===size&&i.color===color)||{qty:0}).qty;if(av<=0)return t('Esa talla y color están agotados'),0;if(have+q>av)return t('Solo quedan '+av+' unidades'),0;const k=cart.find(i=>i.id===id&&i.size===size&&i.color===color);k?k.qty+=q:cart.push({id,size,color,qty:q});upd();t('Añadido al carrito');return 1}
-function chq(i,d){cart[i].qty+=d;if(cart[i].qty<1)cart.splice(i,1);upd()}
-function rm(i){cart.splice(i,1);upd()}
-function upd(){save();$('cnt').textContent=cnt();if($('dr').classList.contains('on'))rdr();if(location.hash==='#checkout')R()}
-function rdr(){$('dl').innerHTML=cart.length?cart.map((i,n)=>{const p=P.find(x=>x.id===i.id);return `<div class="it"><a href="#p-${p.id}" onclick="dr(0)">${art(p,i.color,0)}</a><div><b>${p.name}</b><small>${COL[i.color][0]} · Talla ${i.size}</small><div style="display:flex;align-items:center;margin-top:8px"><div class="qty"><button onclick="chq(${n},-1)" aria-label="Menos">−</button><span>${i.qty}</span><button onclick="chq(${n},1)" aria-label="Más">+</button></div><button class="rm" onclick="rm(${n})">Eliminar</button></div></div></div>`}).join(''):'<div class="empty"><p>Tu carrito está vacío.</p><a class="btn o" href="#shop" onclick="dr(0)">Ver la colección</a></div>';
-const s=sub();$('df').innerHTML=cart.length?`<div class="sp"><span>Subtotal</span><b>${m$(s)}</b></div><small style="color:var(--mut)">${s>=150?'Envío gratis incluido.':'Envío gratis desde $150. Te faltan '+m$(150-s)+'.'}</small><a class="btn" href="#checkout" onclick="dr(0)">Finalizar compra</a>`:''}
-// ===== Componentes =====
-const dots=(p,sel,fn)=>p.colors.map(c=>`<button class="dot ${c===sel?'on':''}" style="background:${COL[c][1]}" title="${COL[c][0]}" aria-label="${COL[c][0]}" onclick="${fn}'${c}')"></button>`).join('');
-function card(p){const s=CS[p.id]||(CS[p.id]={color:p.colors[0],size:p.sizes.length===1?p.sizes[0]:''});
-return `<article class="card" id="c${p.id}"><a href="#p-${p.id}"><div style="position:relative"><div class="tags">${tot(p)<=0?'<span class="tag">AGOTADO</span>':''}${p.tag?`<span class="tag ${p.tag}">${p.tag==='BEST'?'BEST SELLER':p.tag}</span>`:''}</div>${art(p,s.color,0)}</div></a><button class="add" onclick="qa(${p.id})">Agregar al carrito</button>
-<h3>${p.name}</h3><div class="pr">${p.old?`<b class="now">${m$(p.price)}</b><s>${m$(p.old)}</s>`:`<b>${m$(p.price)}</b>`}</div>
-<div class="sw">${dots(p,s.color,'cc('+p.id+',')}</div><div class="sw">${p.sizes.map(z=>`<button class="chip ${z===s.size?'on':''}" onclick="cs(${p.id},'${z}')">${z}</button>`).join('')}</div></article>`}
-function cc(id,c){CS[id].color=c;rc(id)}function cs(id,z){CS[id].size=z;rc(id)}
-function rc(id){const e=$('c'+id);e.outerHTML=card(P.find(p=>p.id===id))}
-function qa(id){const s=CS[id];add(id,s.size,s.color)}
-const grid=l=>`<div class="grid">${l.map(card).join('')}</div>`;
-// ===== Páginas =====
-function home(){if(!P.length)return `<div class="wrap"><div class="empty" style="padding:140px 0"><h2>Pronto, nueva colección</h2><p>Estamos preparando la tienda.</p></div></div>`;const [a,b,c]=[P[0],P[1%P.length],P[2%P.length]];return `<section class="hero"><div class="t"><span style="color:var(--mut)">Nueva colección 2026</span><h1>Especially<br>selected<br>for you</h1><p>Prendas suaves, siluetas limpias y detalles que se notan. Una colección elegida pieza a pieza.</p><div><a class="btn" href="#shop-new">Descubrir colección</a></div></div>
-<div class="p"><a href="#p-${a.id}">${art(a,a.colors[0],0)}</a><a href="#p-${b.id}">${art(b,b.colors[0],1)}</a><a href="#p-${c.id}">${art(c,c.colors[0],2)}</a></div></section>
-<section class="sec"><div class="wrap"><div class="sh"><h2>Compra por categoría</h2></div><div class="cats">${CATS.map(c=>[c,P.find(p=>p.cat===c.slug)]).filter(x=>x[1]).slice(0,4).map(([c,p])=>`<a href="#shop-${c.slug}" style="position:relative;display:block">${art(p,p.colors[0],0)}<span>${c.name}</span></a>`).join('')}</div></div></section>
-<section class="sec" style="padding-top:0"><div class="wrap"><div class="sh"><h2>Recién llegadas</h2><a href="#shop-new">Ver todo</a></div>${grid(P.filter(p=>p.tag==='NUEVO').slice(0,4))}</div></section>
-<section class="banner"><div><h2>Lo más querido</h2><p style="color:#6b5855;max-width:380px">Las prendas que más se repiten en nuestros armarios. Volverás a ellas cada temporada.</p><a class="btn" href="#shop-best">Ver best sellers</a></div>${art(P[2%P.length],P[2%P.length].colors[0],1)}</section>
-<section class="sec"><div class="wrap"><div class="sh"><h2>Ahora en oferta</h2><a href="#shop-sale">Ver ofertas</a></div>${grid(P.filter(p=>p.tag==='SALE'))}</div></section>`}
-function list(){let l=P.filter(p=>(!F.cat||(F.cat==='ropa'?p.cat!=='accesorios':p.cat===F.cat))&&(!F.size||p.sizes.includes(F.size))&&(!F.color||p.colors.includes(F.color))&&p.price<=F.max&&(!F.newOnly||p.tag===F.newOnly)&&(!F.q||(p.name+p.cat+p.desc).toLowerCase().includes(F.q.toLowerCase())));
-const so={feat:(a,b)=>a.pos-b.pos,new:(a,b)=>b.date.localeCompare(a.date),pop:(a,b)=>b.pop-a.pop,asc:(a,b)=>a.price-b.price,desc:(a,b)=>b.price-a.price};return l.sort(so[F.sort])}
-const fb=(a,v,x,l)=>`<button class="${F[a]===v?'on':''}" onclick="sf('${a}',${typeof v==='number'?v:`'${v}'`})">${l}</button>`;
-function sf(k,v){F[k]=F[k]===v&&k!=='sort'?(k==='max'?1e9:''):v;if(k==='cat'||k==='sort')F.newOnly=k==='cat'?0:F.newOnly;R(1)}
-function shop(){const l=list(),T=Object.fromEntries([['','Toda la colección'],['ropa','Ropa'],...CATS.map(c=>[c.slug,c.name])]);
-const ttl=F.newOnly==='NUEVO'?'Nueva colección':F.newOnly==='SALE'?'Ofertas':F.newOnly==='BEST'?'Best sellers':F.q?`Resultados para “${F.q}”`:T[F.cat];
-return `<div class="wrap"><div class="crumb"><a href="#home">Inicio</a> / ${ttl}</div><div class="sh" style="margin:22px 0 0"><h1 style="font-size:clamp(34px,4.5vw,56px)">${ttl}</h1></div><div class="shop"><aside class="fl" id="fl"><h4>Buscar</h4><input class="inp" value="${F.q}" placeholder="Buscar prenda" oninput="F.q=this.value;clearTimeout(window.ti);window.ti=setTimeout(()=>R(1,1),250)" id="fq"><h4>Categoría</h4><div class="cl">${[['','Todo'],['ropa','Ropa'],...CATS.map(c=>[c.slug,c.name])].map(([v,n])=>`<button class="${F.cat===v&&!F.newOnly?'on':''}" onclick="F.cat='${v}';F.newOnly=0;R(1)">${n}</button>`).join('')}</div>
-<h4>Talla</h4><div class="row">${['XS','S','M','L','XL'].map(z=>`<button class="chip ${F.size===z?'on':''}" onclick="sf('size','${z}')">${z}</button>`).join('')}</div>
-<h4>Color</h4><div class="sw">${Object.keys(COL).map(c=>`<button class="dot ${F.color===c?'on':''}" style="background:${COL[c][1]}" title="${COL[c][0]}" aria-label="${COL[c][0]}" onclick="sf('color','${c}')"></button>`).join('')}</div>
-<h4>Precio</h4><div class="cl">${[[50,'Hasta $50'],[80,'Hasta $80'],[110,'Hasta $110']].map(([v,n])=>`<button class="${F.max===v?'on':''}" onclick="sf('max',${v})">${n}</button>`).join('')}</div>
-<button class="rm" style="margin:20px 0 0" onclick="F={...F0};R(1)">Borrar filtros</button></aside>
-<div><div class="bar"><span style="color:var(--mut)">${l.length} prendas</span><button class="btn o" id="ftog" style="padding:9px 18px" onclick="$('fl').classList.toggle('on')">Filtros</button><select onchange="F.sort=this.value;R(1)" aria-label="Ordenar">${[['feat','Destacados'],['new','Novedades'],['pop','Popularidad'],['asc','Precio: menor a mayor'],['desc','Precio: mayor a menor']].map(([v,n])=>`<option value="${v}" ${F.sort===v?'selected':''}>${n}</option>`).join('')}</select></div>
-${l.length?grid(l):'<div class="empty"><p>No hay prendas con esos filtros.</p><button class="btn o" onclick="F={...F0};R(1)">Borrar filtros</button></div>'}</div></div></div>`}
-function prod(id){const p=P.find(x=>x.id===id);if(!p)return info('x');const s=PS[id]||(PS[id]={color:p.colors[0],size:p.sizes.length===1?p.sizes[0]:'',q:1,v:0});
-return `<div class="wrap"><div class="crumb"><a href="#home">Inicio</a> / <a href="#shop-${p.cat}">${catName(p.cat)}</a> / ${p.name}</div><div class="pd">
-<div class="gal"><div class="th">${(p.imgs&&p.imgs.length?p.imgs:[0,1,2]).map((_,v)=>`<button class="${s.v===v?'on':''}" onclick="PS[${id}].v=${v};R(1,1)" aria-label="Foto ${v+1}">${art(p,s.color,v)}</button>`).join('')}</div>${art(p,s.color,s.v)}</div>
-<div><h1>${p.name}</h1><div class="pr">${p.old?`<b class="now">${m$(p.price)}</b><s>${m$(p.old)}</s>`:`<b>${m$(p.price)}</b>`}${p.tag?`<span class="tag ${p.tag}" style="margin-left:6px">${p.tag==='BEST'?'BEST SELLER':p.tag}</span>`:''}</div><p style="color:#6b5855;max-width:460px">${p.desc}</p>
-<div class="lab"><span>Color: <b style="color:var(--ink)">${COL[s.color][0]}</b></span></div><div class="sw">${dots(p,s.color,'pc('+id+',')}</div>
-<div class="lab"><span>Talla: <b style="color:var(--ink)">${s.size||'—'}</b></span><u onclick="gm.classList.add('on')">Guía de tallas</u></div><div class="row" style="display:flex;gap:6px;flex-wrap:wrap">${p.sizes.map(z=>`<button class="chip ${z===s.size?'on':''}" onclick="PS[${id}].size='${z}';R(1,1)">${z}</button>`).join('')}</div>
-<div class="lab"><span>Cantidad</span></div><div class="qty"><button onclick="pq(${id},-1)" aria-label="Menos">−</button><span>${s.q}</span><button onclick="pq(${id},1)" aria-label="Más">+</button></div>
-<div class="buy"><button class="btn" onclick="if(add(${id},PS[${id}].size,PS[${id}].color,PS[${id}].q))dr(1)">AGREGAR AL CARRITO</button></div>
-<div class="acc"><details open><summary>Descripción</summary><p>${p.desc} Confeccionada con tejidos de calidad y acabados cuidados.</p></details><details><summary>Composición y cuidados</summary><p>Mezcla de algodón y viscosa. Lavar a 30 °C del revés. No usar secadora. Planchar a baja temperatura.</p></details><details><summary>Envíos y devoluciones</summary><p>Envío en 2–5 días laborables, gratis desde $150. Cambios y devoluciones dentro de 30 días.</p></details></div></div></div>
-<div class="sec" style="padding-top:20px"><div class="sh"><h2>También te puede gustar</h2></div>${grid(P.filter(x=>x.id!==id).sort((a,b)=>(b.cat===p.cat)-(a.cat===p.cat)||b.pop-a.pop).slice(0,4))}</div></div>`}
-function pc(id,c){PS[id].color=c;R(1,1)}function pq(id,d){PS[id].q=Math.max(1,PS[id].q+d);R(1,1)}
-function checkout(){if(!cart.length)return `<div class="wrap"><div class="empty" style="padding:120px 0"><h2>Tu carrito está vacío</h2><a class="btn" href="#shop">Ver la colección</a></div></div>`;
-const s=sub(),ship=window.SH_=window.SH_||'std',sc=s>=150?0:ship==='exp'?12:5;
-return `<div class="wrap"><div class="co"><form onsubmit="return pay(event)"><h3 style="margin-top:0">Datos de contacto</h3>
-<label>Nombre<input class="inp" name="n" required autocomplete="given-name"></label><label>Apellidos<input class="inp" name="a" required autocomplete="family-name"></label><label>Email<input class="inp" type="email" name="e" required autocomplete="email"></label><label>Teléfono<input class="inp" type="tel" name="t" required autocomplete="tel"></label>
-<h3>Dirección de envío</h3><label class="f1">Dirección<input class="inp" name="d" required autocomplete="street-address"></label><label>Ciudad<input class="inp" name="c" required></label><label>Código postal<input class="inp" name="z" required></label>
-<h3>Método de envío</h3><label class="opt"><span><input type="radio" name="s" ${ship==='std'?'checked':''} onchange="SH_='std';R(1,1)">Estándar · 3–5 días</span><b>${s>=150?'Gratis':'$5'}</b></label><label class="opt"><span><input type="radio" name="s" ${ship==='exp'?'checked':''} onchange="SH_='exp';R(1,1)">Express · 1–2 días</span><b>${s>=150?'Gratis':'$12'}</b></label>
-<h3>Pago</h3><p class="f1" style="color:var(--mut);font-size:14px">La pasarela de pago se conectará aquí. Por ahora el pedido se registra sin cobro.</p><button class="btn f1" style="margin-top:8px">Confirmar pedido · ${m$(s+sc)}</button></form>
-<div class="sum"><h3 style="font-size:24px;margin-bottom:12px">Resumen</h3>${cart.map((i,n)=>{const p=P.find(x=>x.id===i.id);return `<div class="it"><div>${art(p,i.color,0)}</div><div><b>${p.name}</b><small>${COL[i.color][0]} · ${i.size} · x${i.qty}</small><div style="display:flex;align-items:center;margin-top:6px"><div class="qty"><button onclick="chq(${n},-1)">−</button><span>${i.qty}</span><button onclick="chq(${n},1)">+</button></div><button class="rm" onclick="rm(${n})">Eliminar</button></div></div></div>`}).join('')}
-<div class="sp" style="margin-top:16px"><span>Subtotal</span><span>${m$(s)}</span></div><div class="sp"><span>Envío</span><span>${sc?m$(sc):'Gratis'}</span></div><div class="sp" style="font-size:19px;margin-top:8px;font-weight:600"><span>Total</span><span>${m$(s+sc)}</span></div></div></div></div>`}
-async function pay(e){e.preventDefault();const f=Object.fromEntries(new FormData(e.target)),b=e.target.querySelector('button.btn');b.disabled=true;try{const o=await API.createOrder({customer:f,items:cart,ship:window.SH_||'std'});cart=[];upd();location.hash='gracias-'+o.id.slice(3)}catch(x){t(x.message);b.disabled=false;load()}return false}
-const INFO={sobre:['Sobre Mara','<p>Mara nació en 2026 con una idea sencilla: elegir menos y elegir mejor. Cada prenda pasa por nuestras manos antes de llegar a ti.</p><p>Buscamos siluetas limpias, tejidos agradables y colores suaves que combinan entre sí, para que vestirte sea fácil y se note que te importa.</p>'],
-contacto:['Contacto','<p>Escríbenos a <b>hola@mara.com</b> o por Instagram. Respondemos en menos de 24 horas laborables.</p><p>Horario: lunes a viernes, de 9:00 a 18:00.</p><form onsubmit="return t(\'Mensaje enviado. Te respondemos pronto.\')&&false" style="display:grid;gap:12px;margin-top:20px"><input class="inp" placeholder="Nombre" required><input class="inp" type="email" placeholder="Email" required><textarea class="inp" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea><button class="btn">Enviar mensaje</button></form>'],
-envios:['Políticas de envío','<p>Preparamos tu pedido en 24–48 horas laborables.</p><ul style="padding-left:20px"><li>Estándar: 3–5 días laborables, $5.</li><li>Express: 1–2 días laborables, $12.</li><li>Envío gratis en pedidos desde $150.</li></ul><p>Recibirás un email con el seguimiento cuando salga tu paquete.</p>'],
-cambios:['Cambios y devoluciones','<p>Tienes 30 días desde la entrega para cambiar o devolver tu pedido.</p><p>La prenda debe estar sin usar, con etiquetas y en su embalaje. Escríbenos a hola@mara.com con tu número de pedido y te enviamos las instrucciones.</p><p>El reembolso se hace al mismo método de pago en un máximo de 7 días tras recibir la devolución.</p>'],
-faq:['Preguntas frecuentes','<details class="acc"><summary>¿Cómo sé qué talla elegir?</summary><p>Consulta la guía de tallas en cada prenda. Si dudas entre dos, elige la mayor.</p></details><details class="acc"><summary>¿Cuánto tarda mi pedido?</summary><p>Entre 3 y 5 días laborables con envío estándar.</p></details><details class="acc"><summary>¿Puedo cambiar una prenda?</summary><p>Sí, durante 30 días desde la entrega.</p></details><details class="acc"><summary>¿Qué métodos de pago aceptan?</summary><p>Tarjeta y billeteras digitales, cuando se conecte la pasarela de pago.</p></details>'],
-x:['No encontramos esa página','<p><a class="btn" href="#shop">Ver la colección</a></p>']};
-function info(k){const [h,b]=INFO[k]||INFO.x;return `<div class="wrap"><div class="info"><h1>${h}</h1>${b}</div></div>`}
+
+<main id="app" class="wrap"></main>
+<footer><div class="wrap">Mara · Especially selected · © 2026</div></footer>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+// ===== Configuración de Supabase (clave publicable: segura para la web) =====
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+const SUPABASE_URL = 'https://ivxtyzcpqyzrlaayirlo.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_r2Q5PnnFw7jbXVFMqTGS5g_kGP5SeIW';
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const app = document.getElementById('app');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = n => '$' + Number(n).toFixed(2).replace(/\.00$/, '');
+const toast = m => { const t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block'; clearTimeout(toast.i); toast.i = setTimeout(() => t.style.display = 'none', 2200); };
+
+// ===== Datos =====
+async function loadCategories() {
+  const { data, error } = await sb.from('categories').select('slug,name,pos').order('pos');
+  if (error) throw error;
+  return data;
+}
+
+async function loadProducts({ cat = '' } = {}) {
+  let q = sb.from('products')
+    .select('id,name,cat,price,old_price,tag,descr,pos,images,variants(size,color_key,color_name,color_hex,stock)')
+    .eq('published', true)
+    .order('pos').order('id', { ascending: false });
+  if (cat) q = q.eq('cat', cat);
+  const { data, error } = await q;
+  if (error) throw error;
+  return data;
+}
+
+async function loadProduct(id) {
+  const { data, error } = await sb.from('products')
+    .select('id,name,cat,price,old_price,tag,descr,images,variants(size,color_key,color_name,color_hex,stock)')
+    .eq('id', id).eq('published', true).maybeSingle();
+  if (error) throw error;
+  return data;
+}
+
+// ===== Helpers de producto =====
+const totalStock = p => (p.variants || []).reduce((a, v) => a + (v.stock || 0), 0);
+const imgOf = p => (p.images && p.images[0]) || '';
+const placeholder = () => `<div style="width:100%;height:100%;display:grid;place-items:center;color:var(--mut);font-size:13px">Foto próximamente</div>`;
+
+function badge(p) {
+  if (totalStock(p) <= 0) return '<span class="tag">AGOTADO</span>';
+  if (p.tag) return `<span class="tag ${esc(p.tag)}">${p.tag === 'BEST' ? 'BEST SELLER' : esc(p.tag)}</span>`;
+  return '';
+}
+
+function priceHTML(p, big) {
+  return p.old_price > 0
+    ? `<b class="now">${money(p.price)}</b><s>${money(p.old_price)}</s>`
+    : `<b>${money(p.price)}</b>`;
+}
+
+function card(p) {
+  return `<a class="card" href="#/producto/${p.id}">
+    <div class="ph">${badge(p)}${imgOf(p) ? `<img src="${esc(imgOf(p))}" alt="${esc(p.name)}" loading="lazy">` : placeholder()}</div>
+    <h3>${esc(p.name)}</h3>
+    <div class="pr">${priceHTML(p)}</div>
+  </a>`;
+}
+
+// ===== Vistas =====
+async function vistaInicio() {
+  const cats = await loadCategories();
+  const all = await loadProducts();
+  const nuevos = all.filter(p => p.tag === 'NUEVO').slice(0, 4);
+  const destacados = all.slice(0, 4);
+  app.innerHTML = `
+    <section class="hero">
+      <h1>Mara</h1>
+      <p>Prendas suaves, siluetas limpias y detalles que se notan. Una colección elegida pieza a pieza.</p>
+      <a class="btn" href="#/catalogo">Descubrir colección</a>
+    </section>
+    <h2 style="margin:30px 0 20px">Categorías</h2>
+    <div class="bar">${cats.map(c => `<a class="chip" href="#/catalogo?cat=${esc(c.slug)}">${esc(c.name)}</a>`).join('')}</div>
+    ${nuevos.length ? `<h2 style="margin:40px 0 20px">Recién llegadas</h2><div class="grid">${nuevos.map(card).join('')}</div>` : ''}
+    ${!nuevos.length && destacados.length ? `<h2 style="margin:40px 0 20px">Colección</h2><div class="grid">${destacados.map(card).join('')}</div>` : ''}
+    ${!all.length ? `<div class="empty"><p>Pronto, nueva colección.</p></div>` : ''}`;
+}
+
+async function vistaCatalogo(params) {
+  const cat = params.get('cat') || '';
+  const cats = await loadCategories();
+  const products = await loadProducts({ cat });
+  const current = cats.find(c => c.slug === cat);
+  app.innerHTML = `
+    <h1 style="margin:40px 0 8px">${current ? esc(current.name) : 'Colección'}</h1>
+    <div class="bar">
+      <a class="chip ${!cat ? 'on' : ''}" href="#/catalogo">Todo</a>
+      ${cats.map(c => `<a class="chip ${c.slug === cat ? 'on' : ''}" href="#/catalogo?cat=${esc(c.slug)}">${esc(c.name)}</a>`).join('')}
+    </div>
+    ${products.length ? `<div class="grid">${products.map(card).join('')}</div>` : `<div class="empty"><p>No hay prendas en esta categoría todavía.</p></div>`}`;
+}
+
+async function vistaProducto(id) {
+  const p = await loadProduct(id);
+  if (!p) { app.innerHTML = `<div class="empty"><p>Esta prenda no está disponible.</p><a class="back" href="#/catalogo">← Volver a la colección</a></div>`; return; }
+
+  const colors = [...new Map((p.variants || []).map(v => [v.color_key, { k: v.color_key, n: v.color_name, h: v.color_hex }])).values()];
+  const sizes = [...new Set((p.variants || []).map(v => v.size))];
+  const state = { color: colors[0]?.k || '', size: '' };
+  const stockOf = (size, color) => (p.variants || []).find(v => v.size === size && v.color_key === color)?.stock || 0;
+
+  app.innerHTML = `
+    <a class="back" href="#/catalogo">← Volver a la colección</a>
+    <div class="pd">
+      <div class="ph">${badge(p)}${imgOf(p) ? `<img src="${esc(imgOf(p))}" alt="${esc(p.name)}">` : placeholder()}</div>
+      <div>
+        <h1>${esc(p.name)}</h1>
+        <div class="pr" style="font-size:22px;margin:12px 0 18px">${priceHTML(p)}</div>
+        <p style="color:#6b5855;max-width:460px">${esc(p.descr)}</p>
+
+        <div class="lbl">Color: <b id="colorName" style="color:var(--ink)">${esc(colors[0]?.n || '—')}</b></div>
+        <div class="chips" id="colors">${colors.map((c, i) => `<button class="dot ${i === 0 ? 'on' : ''}" style="background:${esc(c.h)}" data-k="${esc(c.k)}" data-n="${esc(c.n)}" aria-label="${esc(c.n)}"></button>`).join('')}</div>
+
+        <div class="lbl">Talla</div>
+        <div class="chips" id="sizes">${sizes.map(z => `<button class="sz" data-z="${esc(z)}">${esc(z)}</button>`).join('')}</div>
+        <div class="stock" id="stockMsg">Elige una talla para ver disponibilidad.</div>
+
+        <div class="lbl">Cantidad</div>
+        <div class="qty"><button id="minus">−</button><span id="qty">1</span><button id="plus">+</button></div>
+
+        <div style="margin-top:26px"><button class="btn" id="addBtn" disabled style="opacity:.5">Agregar al carrito</button></div>
+      </div>
+    </div>`;
+
+  const refresh = () => {
+    document.querySelectorAll('#sizes .sz').forEach(b => {
+      b.disabled = stockOf(b.dataset.z, state.color) <= 0;
+      b.classList.toggle('on', b.dataset.z === state.size);
+    });
+    const msg = document.getElementById('stockMsg');
+    const btn = document.getElementById('addBtn');
+    if (!state.size) { msg.textContent = 'Elige una talla para ver disponibilidad.'; btn.disabled = true; btn.style.opacity = .5; return; }
+    const s = stockOf(state.size, state.color);
+    msg.textContent = s > 0 ? (s <= 3 ? `Solo quedan ${s} unidades` : 'Disponible') : 'Agotado en esta combinación';
+    btn.disabled = s <= 0; btn.style.opacity = s > 0 ? 1 : .5;
+  };
+
+  document.querySelectorAll('#colors .dot').forEach(b => b.onclick = () => {
+    state.color = b.dataset.k;
+    document.querySelectorAll('#colors .dot').forEach(x => x.classList.toggle('on', x === b));
+    document.getElementById('colorName').textContent = b.dataset.n;
+    refresh();
+  });
+  document.querySelectorAll('#sizes .sz').forEach(b => b.onclick = () => { state.size = b.dataset.z; refresh(); });
+
+  let qty = 1;
+  const qEl = document.getElementById('qty');
+  document.getElementById('minus').onclick = () => { qty = Math.max(1, qty - 1); qEl.textContent = qty; };
+  document.getElementById('plus').onclick = () => {
+    const max = state.size ? stockOf(state.size, state.color) : 1;
+    qty = Math.min(Math.max(1, max), qty + 1); qEl.textContent = qty;
+  };
+
+  // El carrito se completa en la siguiente parte.
+  document.getElementById('addBtn').onclick = () => {
+    if (!state.size) return toast('Elige una talla');
+    toast('Carrito disponible en la siguiente parte');
+  };
+
+  refresh();
+}
+
 // ===== Router =====
-function R(keep,noscroll){const h=location.hash.slice(1)||'home';let v;
-if(h==='home')v=home();
-else if(h.startsWith('shop')){if(!keep){const k=h.slice(5);F={...F0};if(k==='new')F.newOnly='NUEVO';else if(k==='sale')F.newOnly='SALE';else if(k==='best')F.newOnly='BEST';else if(k&&k!=='ropa'||k==='ropa')F.cat=k;if(h==='shop'&&window.keepQ){F.q=window.keepQ;window.keepQ=''}}v=shop()}
-else if(h.startsWith('p-'))v=prod(+h.slice(2));
-else if(h==='checkout')v=checkout();
-else if(h.startsWith('gracias'))v=`<div class="wrap"><div class="info" style="text-align:center;padding:110px 0"><h1>¡Gracias por tu pedido!</h1><p>Tu pedido MR-${h.slice(8)} está registrado. Te enviaremos la confirmación por email.</p><a class="btn" href="#shop">Seguir comprando</a></div></div>`;
-else v=info(h);
-const fq=document.activeElement&&document.activeElement.id==='fq',sel=fq?document.activeElement.selectionStart:0,fl=$('fl')&&$('fl').classList.contains('on');
-$('app').innerHTML=`<div class="view">${v}</div>`;
-if(fl&&$('fl'))$('fl').classList.add('on');
-if(fq&&$('fq')){$('fq').focus();$('fq').setSelectionRange(sel,sel)}
-document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+h));
-if(!noscroll&&!keep)scrollTo(0,0);menu(0);$('cnt').textContent=cnt()}
-addEventListener('hashchange',()=>{R()});load(true);document.addEventListener('visibilitychange',()=>{if(!document.hidden)load()});
-</script></body></html>
+async function route() {
+  const [path, query] = (location.hash.slice(1) || '/').split('?');
+  const params = new URLSearchParams(query || '');
+  app.innerHTML = '<div class="empty">Cargando…</div>';
+  try {
+    if (path === '/' || path === '') await vistaInicio();
+    else if (path === '/catalogo') await vistaCatalogo(params);
+    else if (path.startsWith('/producto/')) await vistaProducto(path.split('/')[2]);
+    else app.innerHTML = '<div class="empty"><p>Página no encontrada.</p></div>';
+  } catch (e) {
+    console.error(e);
+    app.innerHTML = `<div class="empty"><p>No pudimos cargar la tienda. Inténtalo de nuevo en unos minutos.</p></div>`;
+  }
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+route();
+</script>
+</body>
+</html>
