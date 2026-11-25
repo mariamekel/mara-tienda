@@ -1,4 +1,5 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { renderProductos } from './admin-products.js';
 
 const sb = createClient(
   'https://ivxtyzcpqyzrlaayirlo.supabase.co',
