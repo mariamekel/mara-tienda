@@ -1,100 +1,37 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Mara · Administración</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,700..900,100&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Mara · Administración</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F8F3EA;--rose:#CF9B9B;--rd:#B27C7E;--rl:#EAD2CD;--ink:#4A3536;--mut:#8A7471;--line:#E4D6C8;--w:#FFFCF7}
-*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--ink);font:15px/1.5 'DM Sans',system-ui,sans-serif;padding-bottom:40px}
-button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
-h1,h2,h3{font-family:Fraunces,serif;font-weight:800;font-variation-settings:'SOFT' 100;color:var(--rd)}
-.top{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--w);position:sticky;top:0;z-index:5}
-.logo{font:900 30px Fraunces,serif;color:var(--rose);font-variation-settings:'SOFT' 100}.logo small{font:500 12px 'DM Sans';color:var(--mut);margin-left:6px}
-.tabs{display:flex;gap:4px;overflow-x:auto;padding:10px 12px;background:var(--bg);position:sticky;top:55px;z-index:4;border-bottom:1px solid var(--line)}
-.tabs button{border:0;background:none;padding:9px 14px;border-radius:20px;white-space:nowrap;color:var(--mut);font-weight:500}.tabs button.on{background:var(--rd);color:#fff}
-main{max-width:900px;margin:0 auto;padding:18px 14px}
-.btn{background:var(--rd);color:#fff;border:0;padding:12px 20px;border-radius:3px;font-weight:500;min-height:44px}.btn.o{background:none;border:1px solid var(--ink);color:var(--ink)}.btn.s{padding:7px 12px;min-height:36px;font-size:13px}
-.lnk{background:none;border:0;color:var(--rd);text-decoration:underline;padding:6px}
+:root{--bg:#F8F3EA;--rose:#CF9B9B;--rd:#B27C7E;--rl:#EAD2CD;--ink:#4A3536;--mut:#8A7471;--line:#E4D6C8;--w:#FFFCF7;--bad:#B5483C}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 'DM Sans',system-ui,sans-serif;padding-bottom:40px}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;color:var(--rd);font-weight:800}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.top{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--w);position:sticky;top:0;z-index:5}
+.logo{font:800 26px Fraunces,serif;color:var(--rose)}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+.btn{background:var(--rd);color:#fff;border:0;padding:12px 18px;border-radius:3px;font-weight:500;min-height:44px}
+.btn.o{background:none;border:1px solid var(--ink);color:var(--ink)}
+.btn.s{padding:7px 12px;min-height:36px;font-size:13px}
+.link{background:none;border:0;color:var(--rd);text-decoration:underline;padding:6px}
 input,select,textarea{width:100%;border:1px solid var(--line);background:var(--w);padding:11px 12px;border-radius:3px;min-height:44px}
 label{display:grid;gap:4px;font-size:13px;color:var(--mut);margin-bottom:12px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
-.k{background:var(--w);padding:16px;border:1px solid var(--line)}.k b{display:block;font:800 30px Fraunces,serif;color:var(--rd)}.k span{font-size:13px;color:var(--mut)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.k{background:var(--w);padding:14px;border:1px solid var(--line)}
+.k b{display:block;font:800 26px Fraunces,serif;color:var(--rd)}
+.k span{font-size:12.5px;color:var(--mut)}
 .box{background:var(--w);border:1px solid var(--line);padding:14px;margin-bottom:12px}
-.row{display:flex;gap:12px;align-items:center;background:var(--w);border:1px solid var(--line);padding:10px;margin-bottom:8px}
-.row .th{width:56px;height:70px;background:var(--rl);flex:none;object-fit:cover}.row .in{flex:1;min-width:0}.row .in b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.row small{color:var(--mut)}
-.pill{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--rl);color:var(--ink)}.pill.g{background:#dfe8d6}.pill.r{background:#f2c9c4}
-.bar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
-.ov{position:fixed;inset:0;background:var(--bg);z-index:20;overflow:auto}.pn{max-width:640px;margin:0 auto;padding:16px 16px 80px}.pn .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.pn .hd button{font-size:30px;background:none;border:0}
-.pn h4{margin:18px 0 8px;font-size:13px;color:var(--mut);letter-spacing:.06em;text-transform:uppercase}
-.r2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}.im{position:relative;background:var(--w);border:1px solid var(--line)}.im.main{border:2px solid var(--rd)}.im img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}.im b{position:absolute;top:4px;left:4px;background:var(--rd);color:#fff;font-size:11px;padding:1px 6px}.im div{display:flex;flex-direction:column}.im button{border:0;border-top:1px solid var(--line);background:none;padding:8px;font-size:12px}
-.up{display:grid;place-items:center;border:1.5px dashed var(--rose);min-height:140px;color:var(--rd);cursor:pointer;margin:0}
-.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid var(--line);background:var(--w);padding:8px 14px;border-radius:20px;min-height:38px}.chip.on{background:var(--ink);color:#fff}
-.dot{display:inline-block;width:16px;height:16px;border-radius:50%;border:1px solid #0003;vertical-align:-3px;margin-right:6px}
-.cadd{display:grid;grid-template-columns:1fr 56px auto;gap:8px;margin-top:10px}.cadd input[type=color]{padding:2px}
-table{border-collapse:collapse;width:100%;background:var(--w)}td,th{border:1px solid var(--line);padding:6px;text-align:center;font-size:13px}td input{padding:6px;min-height:36px;text-align:center;min-width:56px}
-.chk{display:flex;align-items:center;gap:10px;margin-top:18px;color:var(--ink);font-size:15px}.chk input{width:22px;min-height:22px}
-.st{font-style:normal;font-size:12px;padding:2px 9px;border-radius:10px;background:var(--rl)}.st.Cancelado{background:#f2c9c4}.st.Entregado{background:#dfe8d6}
-details.o{background:var(--w);border:1px solid var(--line);margin-bottom:10px}details.o summary{padding:14px;cursor:pointer;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}details.o>div{padding:0 14px 14px;border-top:1px solid var(--line)}
-.err{color:#a33;font-size:14px;min-height:20px}.login{max-width:360px;margin:12vh auto;padding:24px;text-align:center}.login .logo{font-size:64px;display:block;margin-bottom:6px}.login label{text-align:left}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 20px;border-radius:3px;z-index:60;display:none;max-width:90%}
-@media(max-width:520px){.r2{grid-template-columns:1fr}}
-</style></head><body><div id="app"></div><div class="toast" id="ts"></div>
-<script>
-const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),m$=n=>'$'+(+n).toFixed(2).replace(/\.00$/,'');
-const SZ=['XS','S','M','L','XL','Única'],ST=['Nuevo','Preparando','Enviado','Entregado','Cancelado'];
-let ME=null,T='resumen',PR=[],CT=[],E=null;
-function toast(m){const t=$('ts');t.textContent=m;t.style.display='block';clearTimeout(toast.i);toast.i=setTimeout(()=>t.style.display='none',2600)}
-async function api(u,m='GET',b){const o={method:m,headers:{'x-mara':'1'}};if(b instanceof FormData)o.body=b;else if(b){o.headers['content-type']='application/json';o.body=JSON.stringify(b)}
-  const r=await fetch(u,o),d=await r.json().catch(()=>({}));if(r.status===401&&!/\/(me|login)$/.test(u)){ME=null;render();throw Error('Sesión caducada. Entra de nuevo.')}if(!r.ok)throw Error(d.error||'Error');return d}
-const run=async f=>{try{await f()}catch(e){toast(e.message)}};
-async function boot(){try{ME=(await api('/api/admin/me')).user}catch(e){ME=null}render()}
-function render(){
-  if(!ME){$('app').innerHTML=`<form class="login" onsubmit="return login(event)"><span class="logo">Mara</span><p style="color:var(--mut);margin-bottom:20px">Administración privada</p><label>Usuario<input id="lu" autocomplete="username" required></label><label>Contraseña<input id="lp" type="password" autocomplete="current-password" required></label><p class="err" id="le"></p><button class="btn" style="width:100%">Entrar</button></form>`;return}
-  $('app').innerHTML=`<div class="top"><span class="logo">Mara<small>Admin</small></span><span><a class="lnk" href="/" target="_blank">Ver tienda</a><button class="lnk" onclick="logout()">Salir</button></span></div><div class="tabs">${[['resumen','Resumen'],['productos','Productos'],['pedidos','Pedidos'],['categorias','Categorías'],['cuenta','Cuenta']].map(([k,n])=>`<button class="${T===k?'on':''}" onclick="T='${k}';render()">${n}</button>`).join('')}</div><main id="v"></main><div class="ov" id="ed" style="display:none"></div>`;
-  run(V[T])}
-async function login(e){e.preventDefault();try{await api('/api/admin/login','POST',{user:$('lu').value,password:$('lp').value});boot()}catch(x){$('le').textContent=x.message}return false}
-async function logout(){await api('/api/admin/logout','POST',{});ME=null;render()}
-const V={
-async resumen(){const s=await api('/api/admin/summary');$('v').innerHTML=`<div class="cards"><div class="k"><b>${s.published}</b><span>Productos publicados</span></div><div class="k"><b>${s.soldout.length}</b><span>Agotados</span></div><div class="k"><b>${s.orders}</b><span>Pedidos recibidos (${s.newOrders} nuevos)</span></div><div class="k"><b>${m$(s.sales)}</b><span>Ventas</span></div></div>
-<div class="box"><h3>Poco inventario</h3>${s.low.length?s.low.map(p=>`<p>${esc(p.name)} <span class="pill r">${p.n} uds.</span></p>`).join(''):'<p style="color:var(--mut)">Todo en orden.</p>'}</div>
-<div class="box"><h3>Agotados</h3>${s.soldout.length?s.soldout.map(n=>`<p>${esc(n)}</p>`).join(''):'<p style="color:var(--mut)">Ninguno.</p>'}</div>${s.drafts?`<p style="color:var(--mut)">${s.drafts} producto(s) en borrador, sin publicar.</p>`:''}`},
-async productos(){const d=await api('/api/admin/products');PR=d.products;CT=d.categories;lst()},
-async pedidos(){const o=await api('/api/admin/orders');$('v').innerHTML=o.length?o.map(x=>{const c=x.customer;return `<details class="o"><summary><b>${esc(x.no)}</b><span style="color:var(--mut)">${esc(x.created.slice(0,16))}</span><b>${m$(x.total)}</b><em class="st ${esc(x.status)}">${esc(x.status)}</em></summary><div>
-<h4 style="margin:14px 0 6px">Enviar a</h4><p>${esc(c.n)} ${esc(c.a)}<br>${esc(c.d)}<br>${esc(c.z)} ${esc(c.c)}<br>Tel: <a href="tel:${esc(c.t)}">${esc(c.t)}</a><br><a href="mailto:${esc(c.e)}">${esc(c.e)}</a></p>
-<h4 style="margin:14px 0 6px">Prendas · envío ${x.ship==='exp'?'Express':'Estándar'}</h4>${x.items.map(i=>`<p>${i.qty} × ${esc(i.name)} <span style="color:var(--mut)">(${esc(i.color)}, talla ${esc(i.size)}) ${m$(i.price*i.qty)}</span></p>`).join('')}<p style="color:var(--mut)">Subtotal ${m$(x.subtotal)} · Envío ${x.shipcost?m$(x.shipcost):'gratis'}</p>
-<label style="margin-top:12px">Estado<select onchange="setSt(${x.id},this.value)">${ST.map(s=>`<option ${s===x.status?'selected':''}>${s}</option>`).join('')}</select></label></div></details>`}).join(''):'<p style="color:var(--mut)">Aún no hay pedidos.</p>'},
-async categorias(){const d=await api('/api/admin/products');CT=d.categories;$('v').innerHTML=CT.map(c=>`<div class="row"><div class="in"><input id="c_${esc(c.slug)}" value="${esc(c.name)}"></div><button class="btn s" onclick="run(()=>saveCat('${esc(c.slug)}'))">Guardar</button><button class="btn o s" onclick="run(()=>delCat('${esc(c.slug)}'))">Eliminar</button></div>`).join('')+`<div class="row"><div class="in"><input id="c_new" placeholder="Nueva categoría o colección"></div><button class="btn s" onclick="run(addCat)">Añadir</button></div>`},
-async cuenta(){$('v').innerHTML=`<div class="box"><h3>Cambiar contraseña</h3><br><label>Contraseña actual<input id="p0" type="password" autocomplete="current-password"></label><label>Nueva contraseña (mínimo 10 caracteres)<input id="p1" type="password" autocomplete="new-password"></label><button class="btn" onclick="run(async()=>{await api('/api/admin/password','POST',{current:$('p0').value,next:$('p1').value});toast('Contraseña actualizada');$('p0').value=$('p1').value=''})">Guardar</button></div>`}};
-const tot=p=>Object.values(p.stock).reduce((a,b)=>a+b,0);
-function lst(){$('v').innerHTML=`<div class="bar"><button class="btn" onclick="newP()">+ Nuevo producto</button></div>`+(PR.length?PR.map((p,i)=>{const t=tot(p);return `<div class="row">${p.imgs[0]?`<img class="th" src="${p.imgs[0]}" alt="">`:'<div class="th"></div>'}<div class="in"><b>${esc(p.name)}</b><small>${m$(p.price)}${p.old?` <s>${m$(p.old)}</s>`:''} · ${t} uds.</small><br><span class="pill ${p.published?'g':''}">${p.published?'Publicado':'Borrador'}</span> ${t<=0?'<span class="pill r">Agotado</span>':''}${p.tag?` <span class="pill">${esc(p.tag)}</span>`:''}</div><div style="display:grid;gap:4px"><button class="btn s" onclick="editP(${p.id})">Editar</button><span style="display:flex;gap:4px"><button class="btn o s" onclick="mv(${i},-1)" aria-label="Subir">↑</button><button class="btn o s" onclick="mv(${i},1)" aria-label="Bajar">↓</button></span></div></div>`}).join(''):'<p style="color:var(--mut)">Todavía no hay productos. Pulsa “Nuevo producto” para crear el primero.</p>')}
-const mv=(i,d)=>run(async()=>{const j=i+d;if(j<0||j>=PR.length)return;[PR[i],PR[j]]=[PR[j],PR[i]];await api('/api/admin/reorder','POST',{ids:PR.map(p=>p.id)});lst()});
-const setSt=(id,s)=>run(async()=>{await api('/api/admin/orders/'+id,'PATCH',{status:s});toast('Estado actualizado');V.pedidos()});
-const saveCat=async k=>{await api('/api/admin/categories/'+k,'PUT',{name:$('c_'+k).value});toast('Guardado')};
-const delCat=async k=>{if(!confirm('¿Eliminar esta categoría?'))return;await api('/api/admin/categories/'+k,'DELETE');V.categorias()};
-const addCat=async()=>{await api('/api/admin/categories','POST',{name:$('c_new').value});V.categorias()};
-// --- editor de producto
-function newP(){E={id:0,name:'',desc:'',cat:CT[0]?CT[0].slug:'',price:'',old:'',tag:'',published:false,pos:0,colors:[],sizes:[],stock:{},imgs:[]};ed()}
-function editP(id){const p=PR.find(x=>x.id===id);E={...p,colors:p.colors.map(k=>({k,n:p.cdef[k][0],h:p.cdef[k][1]})),sizes:[...p.sizes],stock:{...p.stock},imgs:[...p.imgs]};ed()}
-function sync(){if(!$('f_name'))return;E.name=$('f_name').value;E.desc=$('f_desc').value;E.cat=$('f_cat').value;E.tag=$('f_tag').value;E.price=$('f_price').value;E.old=$('f_old').value;E.published=$('f_pub').checked;document.querySelectorAll('[data-sk]').forEach(i=>E.stock[i.dataset.sk]=parseInt(i.value)||0)}
-function ed(){const o=$('ed');o.style.display='block';const sk=(z,c)=>z+'|'+c.k;
-o.innerHTML=`<div class="pn"><div class="hd"><h2>${E.id?'Editar':'Nuevo'} producto</h2><button onclick="closeEd()" aria-label="Cerrar">×</button></div>
-<label>Nombre<input id="f_name" value="${esc(E.name)}"></label><label>Descripción<textarea id="f_desc" rows="4">${esc(E.desc)}</textarea></label>
-<div class="r2"><label>Categoría<select id="f_cat">${CT.map(c=>`<option value="${esc(c.slug)}" ${c.slug===E.cat?'selected':''}>${esc(c.name)}</option>`).join('')}</select></label><label>Etiqueta<select id="f_tag">${[['','Ninguna'],['NUEVO','NUEVO'],['BEST','BEST SELLER'],['SALE','SALE']].map(([v,n])=>`<option value="${v}" ${v===E.tag?'selected':''}>${n}</option>`).join('')}</select></label></div>
-<div class="r2"><label>Precio<input id="f_price" type="number" inputmode="decimal" min="0" step="0.01" value="${esc(E.price)}"></label><label>Precio anterior (si hay oferta)<input id="f_old" type="number" inputmode="decimal" min="0" step="0.01" value="${E.old||''}"></label></div>
-<h4>Fotografías</h4><div class="imgs">${E.imgs.map((u,i)=>`<div class="im ${i?'':'main'}"><img src="${u}" alt="">${i?'':'<b>Principal</b>'}<div>${i?`<button onclick="mainImg(${i})">Hacer principal</button>`:''}<button onclick="delImg(${i})">Quitar</button></div></div>`).join('')}<label class="up">+ Subir fotos<input type="file" accept="image/*" multiple hidden onchange="upl(this)"></label></div>
-<h4>Colores</h4><div class="chips">${E.colors.map((c,i)=>`<span class="chip"><span class="dot" style="background:${esc(c.h)}"></span>${esc(c.n)} <button class="lnk" onclick="delColor(${i})" aria-label="Quitar">×</button></span>`).join('')}</div><div class="cadd"><input id="cn" placeholder="Nombre del color"><input id="ch" type="color" value="#d8a9a8"><button class="btn s" onclick="addColor()">Añadir</button></div>
-<h4>Tallas</h4><div class="chips">${SZ.map(z=>`<button class="chip ${E.sizes.includes(z)?'on':''}" onclick="togSize('${z}')">${z}</button>`).join('')}</div>
-${E.sizes.length&&E.colors.length?`<h4>Inventario (unidades por variante)</h4><div style="overflow-x:auto"><table><tr><th></th>${E.colors.map(c=>`<th>${esc(c.n)}</th>`).join('')}</tr>${E.sizes.map(z=>`<tr><th>${esc(z)}</th>${E.colors.map(c=>`<td><input type="number" inputmode="numeric" min="0" data-sk="${esc(sk(z,c))}" value="${E.stock[sk(z,c)]||0}"></td>`).join('')}</tr>`).join('')}</table></div><p style="color:var(--mut);font-size:13px;margin-top:6px">Con 0 unidades la variante aparece como agotada.</p>`:'<p style="color:var(--mut);margin-top:14px">Añade colores y tallas para gestionar el inventario.</p>'}
-<label class="chk"><input type="checkbox" id="f_pub" ${E.published?'checked':''}> Publicado en la tienda</label>
-<div class="bar"><button class="btn" onclick="saveP()">Guardar</button>${E.id?'<button class="btn o" onclick="delP()">Eliminar producto</button>':''}</div></div>`}
-const closeEd=()=>{$('ed').style.display='none';E=null};
-const togSize=z=>{sync();E.sizes=E.sizes.includes(z)?E.sizes.filter(x=>x!==z):SZ.filter(x=>E.sizes.includes(x)||x===z);ed()};
-function addColor(){sync();const n=$('cn').value.trim();if(!n)return toast('Escribe el nombre del color');const k=n.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'c'+E.colors.length;if(E.colors.some(c=>c.k===k))return toast('Ese color ya existe');E.colors.push({k,n,h:$('ch').value});ed()}
-const delColor=i=>{sync();E.colors.splice(i,1);ed()};
-const mainImg=i=>{sync();E.imgs.unshift(E.imgs.splice(i,1)[0]);ed()};
-const delImg=i=>{sync();E.imgs.splice(i,1);ed()};
-async function shrink(f){try{const b=await createImageBitmap(f),k=Math.min(1,1600/Math.max(b.width,b.height)),c=document.createElement('canvas');c.width=b.width*k;c.height=b.height*k;c.getContext('2d').drawImage(b,0,0,c.width,c.height);return await new Promise(r=>c.toBlob(r,'image/jpeg',.86))||f}catch(e){return f}}
-async function upl(inp){sync();const fs=[...inp.files];toast('Subiendo fotos…');for(const f of fs){try{const b=await shrink(f),fd=new FormData();fd.append('file',b,'foto.jpg');E.imgs.push((await api('/api/admin/upload','POST',fd)).url)}catch(e){toast(e.message)}}ed()}
-const saveP=()=>run(async()=>{sync();if(!E.name.trim())throw Error('Escribe un nombre');if(!(+E.price>0))throw Error('Indica el precio');
-  await api(E.id?'/api/admin/products/'+E.id:'/api/admin/products',E.id?'PUT':'POST',E);toast('Guardado. Ya se ve en la tienda.');closeEd();V.productos()});
-const delP=()=>run(async()=>{if(!confirm('¿Eliminar este producto y sus fotos? No se puede deshacer.'))return;await api('/api/admin/products/'+E.id,'DELETE');closeEd();V.productos()});
-boot();
-</script></body></html>
+.row{display:flex;gap:10px;align-items:center;background:var(--w);border:1px solid var(--line);padding:10px;margin-bottom:8px}
+.row .th{width:52px;height:66px;background:var(--rl);flex:none;object-fit:cover}
+.row .in{flex:1;min-width:0}
+.row .in b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row small{color:var(--mut)}
+.pill{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--rl)}
+.pill.g{background:#dfe8d6}.pill.r{background:#f2c9c4}
+.b
