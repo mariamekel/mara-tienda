@@ -77,15 +77,14 @@ async function resumen() {
         <div class="k"><b>${t.pedidos}</b><span>Pedidos recibidos</span></div>
         <div class="k"><b>${money(t.ventas)}</b><span>Ventas (sin cancelados)</span></div>
       </div>
+      <button class="btn" id="ir-prod" style="width:100%;margin-top:14px">Administrar mi tienda</button>
     </div>`;
   document.getElementById('out').onclick = async () => {
     await sb.auth.signOut();
     loginView();
   };
+  document.getElementById('ir-prod').onclick = () => renderProductos(sb, app, toast);
 }
-
-// ===== Cierre al cerrar la pestaña: sessionStorage lo borra solo =====
-// Al volver a abrir /admin.html, la sesión ya no existe y se pide login.
 
 // ===== Arranque =====
 async function boot() {
