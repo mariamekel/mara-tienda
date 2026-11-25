@@ -11,16 +11,19 @@
 body{background:var(--bg);color:var(--ink);font:400 15px/1.6 'DM Sans',system-ui,sans-serif}
 h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:800;color:var(--rd);line-height:1.1}
 a{color:inherit;text-decoration:none}
-button,input,select{font:inherit;color:inherit}button{cursor:pointer}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
 .top{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:5}
 .logo{font:900 34px Fraunces,serif;color:var(--rose);font-variation-settings:'SOFT' 100}
-nav{display:flex;gap:18px;font-size:14px}nav a:hover{color:var(--rd)}
+nav{display:flex;gap:18px;font-size:14px;align-items:center}nav a:hover{color:var(--rd)}
+.cart-btn{position:relative;border:1px solid var(--line);background:var(--w);padding:8px 14px;border-radius:20px;font-size:13px}
+.cart-btn b{background:var(--rd);color:#fff;border-radius:10px;padding:1px 7px;margin-left:4px;font-size:12px}
 .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
 .hero{padding:70px 0 50px;text-align:center}
 .hero h1{font-size:clamp(40px,6vw,76px);color:var(--rose)}
 .hero p{color:var(--mut);margin:16px auto 28px;max-width:440px}
 .btn{display:inline-block;background:var(--rd);color:#fff;padding:14px 30px;border-radius:2px;font-weight:500;letter-spacing:.03em;border:0}
 .btn:hover{background:var(--ink)}
+.btn:disabled{opacity:.5;cursor:not-allowed;background:var(--rd)}
 .bar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 26px;justify-content:center}
 .chip{border:1px solid var(--line);background:var(--w);padding:8px 16px;border-radius:20px;font-size:13px}
 .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -45,21 +48,31 @@ nav{display:flex;gap:18px;font-size:14px}nav a:hover{color:var(--rd)}
 .empty{text-align:center;padding:80px 0;color:var(--mut)}
 .back{font-size:13px;color:var(--mut);padding:24px 0 0;display:inline-block}
 .back:hover{color:var(--rd)}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 22px;border-radius:3px;display:none;z-index:9}
+.cart-line{display:grid;grid-template-columns:70px 1fr auto;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:center}
+.cart-line .ph{aspect-ratio:3/4}
+.cart-line small{color:var(--mut);display:block}
+.cart-line .qty button{width:32px;height:32px}.cart-line .qty span{width:34px}
+.rm{font-size:12px;color:var(--mut);text-decoration:underline;background:none;border:0;margin-left:10px}
+.sum{display:flex;justify-content:space-between;margin:8px 0}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.form .f1{grid-column:1/-1}
+.form label{font-size:13px;color:var(--mut);display:grid;gap:4px}
+.form input{border:1px solid var(--line);background:var(--w);padding:11px 12px;border-radius:3px;min-height:44px;width:100%}
+.opt{grid-column:1/-1;display:flex;justify-content:space-between;border:1px solid var(--line);padding:14px;background:var(--w);cursor:pointer;align-items:center}
+.opt input{width:auto;min-height:0;margin-right:10px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 22px;border-radius:3px;display:none;z-index:9;max-width:90%;text-align:center}
 footer{background:var(--rl);padding:40px 0 28px;margin-top:40px;text-align:center;font-size:13px;color:#6b5855}
-@media(max-width:760px){.pd{grid-template-columns:1fr;gap:24px}nav{display:none}.grid{grid-template-columns:1fr 1fr;gap:24px 12px}}
+@media(max-width:760px){.pd{grid-template-columns:1fr;gap:24px}nav a.hide-m{display:none}.grid{grid-template-columns:1fr 1fr;gap:24px 12px}.form{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header class="top">
   <a href="#/" class="logo">Mara</a>
   <nav>
-    <a href="#/">Inicio</a>
-    <a href="#/catalogo">Colección</a>
-    <a href="#/catalogo?cat=vestidos">Vestidos</a>
-    <a href="#/catalogo?cat=tops">Tops</a>
-    <a href="#/catalogo?cat=pantalones">Pantalones</a>
-    <a href="#/catalogo?cat=accesorios">Accesorios</a>
+    <a class="hide-m" href="#/catalogo">Colección</a>
+    <a class="hide-m" href="#/catalogo?cat=vestidos">Vestidos</a>
+    <a class="hide-m" href="#/catalogo?cat=tops">Tops</a>
+    <a href="#/carrito" class="cart-btn">Carrito <b id="cartCount">0</b></a>
   </nav>
 </header>
 
@@ -68,7 +81,6 @@ footer{background:var(--rl);padding:40px 0 28px;margin-top:40px;text-align:cente
 <div class="toast" id="toast"></div>
 
 <script type="module">
-// ===== Configuración de Supabase (clave publicable: segura para la web) =====
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 const SUPABASE_URL = 'https://ivxtyzcpqyzrlaayirlo.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_r2Q5PnnFw7jbXVFMqTGS5g_kGP5SeIW';
@@ -77,7 +89,14 @@ const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 const app = document.getElementById('app');
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money = n => '$' + Number(n).toFixed(2).replace(/\.00$/, '');
-const toast = m => { const t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block'; clearTimeout(toast.i); toast.i = setTimeout(() => t.style.display = 'none', 2200); };
+const toast = m => { const t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block'; clearTimeout(toast.i); toast.i = setTimeout(() => t.style.display = 'none', 2600); };
+
+// ===== Carrito (se guarda en el navegador) =====
+let cart = [];
+try { cart = JSON.parse(localStorage.getItem('mara-cart') || '[]'); } catch (e) { cart = []; }
+const saveCart = () => { try { localStorage.setItem('mara-cart', JSON.stringify(cart)); } catch (e) {} updateCount(); };
+const cartCount = () => cart.reduce((a, i) => a + i.qty, 0);
+const updateCount = () => { document.getElementById('cartCount').textContent = cartCount(); };
 
 // ===== Datos =====
 async function loadCategories() {
@@ -85,18 +104,15 @@ async function loadCategories() {
   if (error) throw error;
   return data;
 }
-
 async function loadProducts({ cat = '' } = {}) {
   let q = sb.from('products')
     .select('id,name,cat,price,old_price,tag,descr,pos,images,variants(size,color_key,color_name,color_hex,stock)')
-    .eq('published', true)
-    .order('pos').order('id', { ascending: false });
+    .eq('published', true).order('pos').order('id', { ascending: false });
   if (cat) q = q.eq('cat', cat);
   const { data, error } = await q;
   if (error) throw error;
   return data;
 }
-
 async function loadProduct(id) {
   const { data, error } = await sb.from('products')
     .select('id,name,cat,price,old_price,tag,descr,images,variants(size,color_key,color_name,color_hex,stock)')
@@ -105,23 +121,18 @@ async function loadProduct(id) {
   return data;
 }
 
-// ===== Helpers de producto =====
+// ===== Helpers =====
 const totalStock = p => (p.variants || []).reduce((a, v) => a + (v.stock || 0), 0);
 const imgOf = p => (p.images && p.images[0]) || '';
 const placeholder = () => `<div style="width:100%;height:100%;display:grid;place-items:center;color:var(--mut);font-size:13px">Foto próximamente</div>`;
-
 function badge(p) {
   if (totalStock(p) <= 0) return '<span class="tag">AGOTADO</span>';
   if (p.tag) return `<span class="tag ${esc(p.tag)}">${p.tag === 'BEST' ? 'BEST SELLER' : esc(p.tag)}</span>`;
   return '';
 }
-
-function priceHTML(p, big) {
-  return p.old_price > 0
-    ? `<b class="now">${money(p.price)}</b><s>${money(p.old_price)}</s>`
-    : `<b>${money(p.price)}</b>`;
+function priceHTML(p) {
+  return p.old_price > 0 ? `<b class="now">${money(p.price)}</b><s>${money(p.old_price)}</s>` : `<b>${money(p.price)}</b>`;
 }
-
 function card(p) {
   return `<a class="card" href="#/producto/${p.id}">
     <div class="ph">${badge(p)}${imgOf(p) ? `<img src="${esc(imgOf(p))}" alt="${esc(p.name)}" loading="lazy">` : placeholder()}</div>
@@ -148,7 +159,6 @@ async function vistaInicio() {
     ${!nuevos.length && destacados.length ? `<h2 style="margin:40px 0 20px">Colección</h2><div class="grid">${destacados.map(card).join('')}</div>` : ''}
     ${!all.length ? `<div class="empty"><p>Pronto, nueva colección.</p></div>` : ''}`;
 }
-
 async function vistaCatalogo(params) {
   const cat = params.get('cat') || '';
   const cats = await loadCategories();
@@ -162,14 +172,12 @@ async function vistaCatalogo(params) {
     </div>
     ${products.length ? `<div class="grid">${products.map(card).join('')}</div>` : `<div class="empty"><p>No hay prendas en esta categoría todavía.</p></div>`}`;
 }
-
 async function vistaProducto(id) {
   const p = await loadProduct(id);
   if (!p) { app.innerHTML = `<div class="empty"><p>Esta prenda no está disponible.</p><a class="back" href="#/catalogo">← Volver a la colección</a></div>`; return; }
-
   const colors = [...new Map((p.variants || []).map(v => [v.color_key, { k: v.color_key, n: v.color_name, h: v.color_hex }])).values()];
   const sizes = [...new Set((p.variants || []).map(v => v.size))];
-  const state = { color: colors[0]?.k || '', size: '' };
+  const state = { color: colors[0]?.k || '', size: '', qty: 1 };
   const stockOf = (size, color) => (p.variants || []).find(v => v.size === size && v.color_key === color)?.stock || 0;
 
   app.innerHTML = `
@@ -180,18 +188,14 @@ async function vistaProducto(id) {
         <h1>${esc(p.name)}</h1>
         <div class="pr" style="font-size:22px;margin:12px 0 18px">${priceHTML(p)}</div>
         <p style="color:#6b5855;max-width:460px">${esc(p.descr)}</p>
-
         <div class="lbl">Color: <b id="colorName" style="color:var(--ink)">${esc(colors[0]?.n || '—')}</b></div>
         <div class="chips" id="colors">${colors.map((c, i) => `<button class="dot ${i === 0 ? 'on' : ''}" style="background:${esc(c.h)}" data-k="${esc(c.k)}" data-n="${esc(c.n)}" aria-label="${esc(c.n)}"></button>`).join('')}</div>
-
         <div class="lbl">Talla</div>
         <div class="chips" id="sizes">${sizes.map(z => `<button class="sz" data-z="${esc(z)}">${esc(z)}</button>`).join('')}</div>
         <div class="stock" id="stockMsg">Elige una talla para ver disponibilidad.</div>
-
         <div class="lbl">Cantidad</div>
         <div class="qty"><button id="minus">−</button><span id="qty">1</span><button id="plus">+</button></div>
-
-        <div style="margin-top:26px"><button class="btn" id="addBtn" disabled style="opacity:.5">Agregar al carrito</button></div>
+        <div style="margin-top:26px"><button class="btn" id="addBtn" disabled>Agregar al carrito</button></div>
       </div>
     </div>`;
 
@@ -202,12 +206,11 @@ async function vistaProducto(id) {
     });
     const msg = document.getElementById('stockMsg');
     const btn = document.getElementById('addBtn');
-    if (!state.size) { msg.textContent = 'Elige una talla para ver disponibilidad.'; btn.disabled = true; btn.style.opacity = .5; return; }
+    if (!state.size) { msg.textContent = 'Elige una talla para ver disponibilidad.'; btn.disabled = true; return; }
     const s = stockOf(state.size, state.color);
     msg.textContent = s > 0 ? (s <= 3 ? `Solo quedan ${s} unidades` : 'Disponible') : 'Agotado en esta combinación';
-    btn.disabled = s <= 0; btn.style.opacity = s > 0 ? 1 : .5;
+    btn.disabled = s <= 0;
   };
-
   document.querySelectorAll('#colors .dot').forEach(b => b.onclick = () => {
     state.color = b.dataset.k;
     document.querySelectorAll('#colors .dot').forEach(x => x.classList.toggle('on', x === b));
@@ -216,21 +219,92 @@ async function vistaProducto(id) {
   });
   document.querySelectorAll('#sizes .sz').forEach(b => b.onclick = () => { state.size = b.dataset.z; refresh(); });
 
-  let qty = 1;
   const qEl = document.getElementById('qty');
-  document.getElementById('minus').onclick = () => { qty = Math.max(1, qty - 1); qEl.textContent = qty; };
+  document.getElementById('minus').onclick = () => { state.qty = Math.max(1, state.qty - 1); qEl.textContent = state.qty; };
   document.getElementById('plus').onclick = () => {
     const max = state.size ? stockOf(state.size, state.color) : 1;
-    qty = Math.min(Math.max(1, max), qty + 1); qEl.textContent = qty;
+    state.qty = Math.min(Math.max(1, max), state.qty + 1); qEl.textContent = state.qty;
   };
-
-  // El carrito se completa en la siguiente parte.
   document.getElementById('addBtn').onclick = () => {
     if (!state.size) return toast('Elige una talla');
-    toast('Carrito disponible en la siguiente parte');
+    const s = stockOf(state.size, state.color);
+    const have = (cart.find(i => i.id === p.id && i.size === state.size && i.color === state.color)?.qty) || 0;
+    if (have + state.qty > s) return toast(`Solo quedan ${s} unidades de esta combinación`);
+    const line = cart.find(i => i.id === p.id && i.size === state.size && i.color === state.color);
+    if (line) line.qty += state.qty;
+    else cart.push({ id: p.id, name: p.name, price: p.price, img: imgOf(p), size: state.size, color: state.color, colorName: colors.find(c => c.k === state.color)?.n || '', qty: state.qty });
+    saveCart();
+    toast('Añadido al carrito');
   };
-
   refresh();
+}
+function vistaCarrito() {
+  if (!cart.length) { app.innerHTML = `<div class="empty"><p>Tu carrito está vacío.</p><a class="btn" href="#/catalogo">Ver la colección</a></div>`; return; }
+  const sub = cart.reduce((a, i) => a + i.price * i.qty, 0);
+  const ship = sub >= 150 ? 0 : 5;
+  app.innerHTML = `
+    <h1 style="margin:40px 0 20px">Tu carrito</h1>
+    ${cart.map((i, n) => `
+      <div class="cart-line">
+        <div class="ph">${i.img ? `<img src="${esc(i.img)}" alt="">` : placeholder()}</div>
+        <div><b>${esc(i.name)}</b><small>${esc(i.colorName)} · Talla ${esc(i.size)}</small>
+          <div style="display:flex;align-items:center;margin-top:8px">
+            <div class="qty"><button data-act="-" data-n="${n}">−</button><span>${i.qty}</span><button data-act="+" data-n="${n}">+</button></div>
+            <button class="rm" data-act="x" data-n="${n}">Eliminar</button>
+          </div>
+        </div>
+        <b>${money(i.price * i.qty)}</b>
+      </div>`).join('')}
+    <div style="margin-top:24px">
+      <div class="sum"><span>Subtotal</span><span>${money(sub)}</span></div>
+      <div class="sum"><span>Envío</span><span>${ship ? money(ship) : 'Gratis'}</span></div>
+      <div class="sum" style="font-weight:600;font-size:18px"><span>Total</span><span>${money(sub + ship)}</span></div>
+      <p style="font-size:13px;color:var(--mut)">${sub >= 150 ? '' : 'Envío gratis desde $150.'}</p>
+      <a class="btn" href="#/checkout" style="display:block;text-align:center;margin-top:16px">Continuar con la compra</a>
+    </div>`;
+  app.querySelectorAll('[data-act]').forEach(b => b.onclick = () => {
+    const n = +b.dataset.n, a = b.dataset.act;
+    if (a === '+') cart[n].qty = Math.min(20, cart[n].qty + 1);
+    if (a === '-') cart[n].qty = Math.max(1, cart[n].qty - 1);
+    if (a === 'x') cart.splice(n, 1);
+    saveCart(); vistaCarrito();
+  });
+}
+function vistaCheckout() {
+  if (!cart.length) return location.hash = '#/carrito';
+  const sub = cart.reduce((a, i) => a + i.price * i.qty, 0);
+  app.innerHTML = `
+    <h1 style="margin:40px 0 10px">Finalizar compra</h1>
+    <form class="form" id="form">
+      <label>Nombre<input name="n" required autocomplete="given-name"></label>
+      <label>Apellidos<input name="a" required autocomplete="family-name"></label>
+      <label class="f1">Email<input name="e" type="email" required autocomplete="email"></label>
+      <label>Teléfono<input name="t" type="tel" required autocomplete="tel"></label>
+      <label class="f1">Dirección<input name="d" required autocomplete="street-address"></label>
+      <label>Ciudad<input name="c" required></label>
+      <label>Código postal<input name="z" required></label>
+      <h3 class="f1" style="margin-top:14px">Envío</h3>
+      <label class="opt"><span><input type="radio" name="s" value="std" checked>Estándar · 3–5 días</span><b>${sub >= 150 ? 'Gratis' : '$5'}</b></label>
+      <label class="opt"><span><input type="radio" name="s" value="exp">Express · 1–2 días</span><b>${sub >= 150 ? 'Gratis' : '$12'}</b></label>
+      <p class="f1" style="font-size:13px;color:var(--mut)">Pago contra entrega o por transferencia. Te contactamos para confirmarlo.</p>
+      <button class="btn f1" id="sendBtn" type="submit">Confirmar pedido · ${money(sub)}+envío</button>
+    </form>`;
+  document.getElementById('form').onsubmit = async e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const customer = { n: f.get('n'), a: f.get('a'), e: f.get('e'), t: f.get('t'), d: f.get('d'), c: f.get('c'), z: f.get('z') };
+    const items = cart.map(i => ({ id: i.id, size: i.size, color: i.color, qty: i.qty }));
+    const btn = document.getElementById('sendBtn');
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    const { data, error } = await sb.rpc('create_order', { p_customer: customer, p_items: items, p_ship: f.get('s') });
+    if (error) {
+      toast(error.message || 'No se pudo registrar el pedido');
+      btn.disabled = false; btn.textContent = 'Confirmar pedido';
+      return;
+    }
+    cart = []; saveCart();
+    app.innerHTML = `<div class="empty" style="padding:120px 0"><h1>¡Gracias por tu pedido!</h1><p style="margin-top:14px">Tu número de pedido es <b>MR-${String(data).padStart(4, '0')}</b>. Te escribiremos al email para confirmarlo.</p><a class="btn" href="#/catalogo" style="margin-top:24px;display:inline-block">Seguir comprando</a></div>`;
+  };
 }
 
 // ===== Router =====
@@ -242,11 +316,14 @@ async function route() {
     if (path === '/' || path === '') await vistaInicio();
     else if (path === '/catalogo') await vistaCatalogo(params);
     else if (path.startsWith('/producto/')) await vistaProducto(path.split('/')[2]);
+    else if (path === '/carrito') vistaCarrito();
+    else if (path === '/checkout') vistaCheckout();
     else app.innerHTML = '<div class="empty"><p>Página no encontrada.</p></div>';
   } catch (e) {
     console.error(e);
     app.innerHTML = `<div class="empty"><p>No pudimos cargar la tienda. Inténtalo de nuevo en unos minutos.</p></div>`;
   }
+  updateCount();
   window.scrollTo(0, 0);
 }
 window.addEventListener('hashchange', route);
