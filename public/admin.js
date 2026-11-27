@@ -4,14 +4,13 @@ import { renderProductos } from './admin-products.js';
 const sb = createClient(
   'https://ivxtyzcpqyzrlaayirlo.supabase.co',
   'sb_publishable_r2Q5PnnFw7jbXVFMqTGS5g_kGP5SeIW',
-  { auth: { storage: window.sessionStorage, persistSession: true, autoRefreshToken: true } }
+  { auth: { storage: window.localStorage, persistSession: true, autoRefreshToken: true } }
 );
 
 const app = document.getElementById('app');
 const money = n => '$' + Number(n || 0).toFixed(2).replace(/\.00$/, '');
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-// ===== Cierre automático por inactividad (15 min) =====
 const IDLE_MS = 15 * 60 * 1000;
 let idleTimer;
 function resetIdle() {
@@ -32,7 +31,6 @@ function toast(m) {
   clearTimeout(toast.i); toast.i = setTimeout(() => t.style.display = 'none', 2600);
 }
 
-// ===== Login =====
 function loginView() {
   app.innerHTML = `
     <form class="login" id="lf">
@@ -54,7 +52,6 @@ function loginView() {
   };
 }
 
-// ===== Resumen =====
 async function resumen() {
   resetIdle();
   app.innerHTML = '<div class="wrap">Cargando resumen…</div>';
@@ -70,26 +67,4 @@ async function resumen() {
     <div class="wrap">
       <div class="cards">
         <div class="k"><b>${t.productos}</b><span>Productos publicados</span></div>
-        <div class="k"><b>${t.prendas}</b><span>Prendas en stock</span></div>
-        <div class="k"><b>${money(t.mercancia_costo)}</b><span>Mercancía a costo</span></div>
-        <div class="k"><b>${money(t.mercancia_venta)}</b><span>Mercancía a precio de venta</span></div>
-        <div class="k"><b>${money(t.ganancia_potencial)}</b><span>Ganancia potencial</span></div>
-        <div class="k"><b>${t.pedidos}</b><span>Pedidos recibidos</span></div>
-        <div class="k"><b>${money(t.ventas)}</b><span>Ventas (sin cancelados)</span></div>
-      </div>
-      <button class="btn" id="ir-prod" style="width:100%;margin-top:14px">Administrar mi tienda</button>
-    </div>`;
-  document.getElementById('out').onclick = async () => {
-    await sb.auth.signOut();
-    loginView();
-  };
-  document.getElementById('ir-prod').onclick = () => renderProductos(sb, app, toast);
-}
-
-// ===== Arranque =====
-async function boot() {
-  const { data } = await sb.auth.getSession();
-  if (data.session) resumen();
-  else loginView();
-}
-boot();
+        <div class="k"><b>${t.prendas}</b>
